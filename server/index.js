@@ -1,10 +1,22 @@
 import express from 'express';
 import http from 'http';
 import {Server as SocketServer} from 'socket.io';
+import cors from 'cors';
+import dotenv from 'dotenv';
+
+// Cargar variables de entorno
+dotenv.config();
 
 const app = express();
+app.use(cors());
+
 const server = http.createServer(app);
-const io = new SocketServer(server);
+const io = new SocketServer(server, {
+  cors: {
+    origin: process.env.FRONTEND_URL || "http://localhost:5173",
+    methods: ["GET", "POST"]
+  }
+});
 
 const users = {};
 
@@ -49,6 +61,8 @@ io.on('connection', socket => {
     });
 });
 
-console.log('Server listening on: http://localhost:3000');
+const PORT = process.env.PORT || 3000;
 
-server.listen(3000);
+server.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
+});
