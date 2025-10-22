@@ -78,7 +78,7 @@ function App() {
       {showUsernameModal ? (
         <div className="bg-zinc-900 p-10 rounded-lg">
           <h1 className="text-2xl font-bold mb-5 text-center">
-            Bienvenidos al chat de Rolling 🚀
+            Bienvenidos al chat en tiempo real con WebSockets
           </h1>
           <form onSubmit={handleUsernameSubmit} className="flex flex-col gap-3">
             <input
@@ -100,7 +100,7 @@ function App() {
       ) : (
         <div className="flex flex-col h-full w-full max-w-4xl">
           <div className="bg-zinc-900 p-4 rounded-t-lg">
-            <h1>Rolling Chat 🚀</h1>
+            <h1>Socket Chat ✅</h1>
             <div className="flex gap-2 flex-wrap">
               {onlineUsers.map((user, index) => (
                 <div
